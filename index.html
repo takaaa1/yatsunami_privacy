@@ -1,99 +1,279 @@
 <!DOCTYPE html>
-<html lang="pt-BR" data-theme="dark">
+<html lang="pt-BR">
 
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Política de Privacidade — Yatsunami</title>
-  <meta id="meta-desc" name="description"
-    content="Política de privacidade do aplicativo Yatsunami: dados coletados, permissões, armazenamento e seus direitos.">
-  <link rel="icon" type="image/png" href="assets/favicon.png">
-
-  <script>
-    (function () {
-      var t = localStorage.getItem('yatsunami_theme');
-      var s = t || (window.matchMedia('(prefers-color-scheme:dark)').matches ? 'dark' : 'light');
-      document.documentElement.setAttribute('data-theme', s);
-    })();
-  </script>
-
+  <meta name="description" content="Política de privacidade do aplicativo Yatsunami: dados coletados, permissões, armazenamento e seus direitos.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link
-    href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Noto+Serif+JP:wght@400;700;900&display=swap"
-    rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 
-  <link rel="stylesheet" href="css/style.css?v=3">
+  <style>
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    :root {
+      --bg: #0d0d0f;
+      --surface: #16161a;
+      --border: #242428;
+      --text: #e8e8ed;
+      --text-muted: #8e8e9a;
+      --accent: #e8472a;
+      --accent-soft: rgba(232, 71, 42, 0.12);
+      --link: #ff7c5c;
+      --h2-bar: #e8472a;
+      --radius: 12px;
+    }
+
+    @media (prefers-color-scheme: light) {
+      :root {
+        --bg: #f5f5f7;
+        --surface: #ffffff;
+        --border: #e2e2e7;
+        --text: #1a1a1f;
+        --text-muted: #6e6e7a;
+        --accent: #d63c22;
+        --accent-soft: rgba(214, 60, 34, 0.08);
+        --link: #c0341b;
+        --h2-bar: #d63c22;
+      }
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      background-color: var(--bg);
+      color: var(--text);
+      line-height: 1.75;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    main {
+      flex: 1;
+      width: 100%;
+      max-width: 760px;
+      margin: 0 auto;
+      padding: 64px 24px 80px;
+    }
+
+    /* ── Header da política ── */
+    .policy-header {
+      margin-bottom: 48px;
+      padding-bottom: 32px;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .policy-badge {
+      display: inline-block;
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--accent);
+      background: var(--accent-soft);
+      padding: 4px 10px;
+      border-radius: 20px;
+      margin-bottom: 20px;
+    }
+
+    h1 {
+      font-size: clamp(1.6rem, 4vw, 2.2rem);
+      font-weight: 700;
+      line-height: 1.2;
+      letter-spacing: -0.02em;
+      color: var(--text);
+      margin-bottom: 16px;
+    }
+
+    .policy-updated {
+      font-size: 14px;
+      color: var(--text-muted);
+    }
+
+    /* ── Lead ── */
+    .policy-lead {
+      font-size: 1.05rem;
+      color: var(--text-muted);
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-left: 3px solid var(--accent);
+      border-radius: var(--radius);
+      padding: 20px 24px;
+      margin-bottom: 48px;
+      line-height: 1.8;
+    }
+
+    /* ── Seções ── */
+    .policy-section {
+      margin-bottom: 40px;
+    }
+
+    h2 {
+      font-size: 1rem;
+      font-weight: 600;
+      letter-spacing: 0.01em;
+      color: var(--text);
+      margin-bottom: 16px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    h2::before {
+      content: '';
+      display: block;
+      width: 4px;
+      height: 18px;
+      background: var(--h2-bar);
+      border-radius: 2px;
+      flex-shrink: 0;
+    }
+
+    p {
+      font-size: 0.95rem;
+      color: var(--text-muted);
+      margin-bottom: 12px;
+    }
+
+    p:last-child {
+      margin-bottom: 0;
+    }
+
+    ul, ol {
+      padding-left: 0;
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    ul li, ol li {
+      font-size: 0.95rem;
+      color: var(--text-muted);
+      padding-left: 20px;
+      position: relative;
+    }
+
+    ul li::before {
+      content: '›';
+      position: absolute;
+      left: 0;
+      color: var(--accent);
+      font-weight: 700;
+    }
+
+    ol {
+      counter-reset: ol-counter;
+    }
+
+    ol li {
+      counter-increment: ol-counter;
+    }
+
+    ol li::before {
+      content: counter(ol-counter) '.';
+      position: absolute;
+      left: 0;
+      color: var(--accent);
+      font-weight: 600;
+      font-size: 0.85rem;
+    }
+
+    strong {
+      color: var(--text);
+      font-weight: 600;
+    }
+
+    a {
+      color: var(--link);
+      text-decoration: none;
+      font-weight: 500;
+      border-bottom: 1px solid transparent;
+      transition: border-color 0.15s;
+    }
+
+    a:hover {
+      border-bottom-color: var(--link);
+    }
+
+    /* ── Nota de fonte ── */
+    .policy-source {
+      font-size: 0.82rem;
+      color: var(--text-muted);
+      opacity: 0.7;
+      margin-top: 48px;
+      padding-top: 24px;
+      border-top: 1px solid var(--border);
+    }
+
+    /* ── Footer mínimo ── */
+    footer {
+      text-align: center;
+      padding: 24px;
+      border-top: 1px solid var(--border);
+      font-size: 13px;
+      color: var(--text-muted);
+    }
+
+    footer a {
+      color: var(--text-muted);
+      font-weight: 400;
+    }
+
+    footer a:hover {
+      color: var(--text);
+    }
+  </style>
 </head>
 
 <body>
 
-  <nav class="navbar" id="navbar">
-    <div class="nav-container">
-      <a class="nav-logo" href="index.html">
-        <img src="assets/icon.png" alt="Yatsunami" class="logo-img">
-        <span data-i18n="app_name">Yatsunami</span>
-      </a>
-
-      <nav class="nav-links" id="nav-links">
-        <a href="index.html#features" data-i18n="nav_features">Funcionalidades</a>
-        <a href="index.html#how" data-i18n="nav_how">Como funciona</a>
-        <a href="index.html#contact" data-i18n="nav_contact">Contato</a>
-      </nav>
-
-      <div class="nav-actions">
-        <button class="lang-btn active" id="lang-pt" onclick="setLang('pt-BR')">PT</button>
-        <span class="lang-sep">|</span>
-        <button class="lang-btn" id="lang-jp" onclick="setLang('ja-JP')">JP</button>
-
-        <button class="theme-toggle" onclick="toggleTheme()" aria-label="Alternar tema">
-          <span class="theme-icon">🌙</span>
-        </button>
-
-        <a href="index.html#download" class="btn-primary" data-i18n="nav_download">Baixar App</a>
-      </div>
-
-      <button class="hamburger" id="hamburger" onclick="toggleMenu()" aria-label="Menu" aria-expanded="false">
-        <span></span><span></span><span></span>
-      </button>
+  <main>
+    <div class="policy-header">
+      <span class="policy-badge">Privacidade</span>
+      <h1>Política de Privacidade</h1>
+      <p class="policy-updated">Última atualização: abril de 2026</p>
     </div>
-  </nav>
 
-  <main class="policy-page" id="conteudo">
-    <article class="policy-container">
-      <a class="policy-back" href="index.html" data-i18n="legal_back_home">← Voltar ao início</a>
+    <p class="policy-lead">Na Yatsunami, respeitamos sua privacidade e estamos comprometidos em proteger os dados
+      pessoais que você compartilha conosco — seja como <strong>pessoa física</strong> ou como <strong>pessoa
+      jurídica</strong> (por exemplo, cliente com <strong>CNPJ</strong>).</p>
 
-      <div id="legal-article-root" data-legal-page="privacy">
-      <h1>Política de Privacidade — Yatsunami</h1>
-      <p class="policy-updated"><strong>Última atualização:</strong> abril de 2026</p>
-
-      <p class="policy-lead">Na Yatsunami, respeitamos sua privacidade e estamos comprometidos em proteger os dados
-        pessoais que você compartilha conosco — seja como <strong>pessoa física</strong> ou como <strong>pessoa
-        jurídica</strong> (por exemplo, cliente com <strong>CNPJ</strong>).</p>
-
+    <div class="policy-section">
       <h2>1. Dados que coletamos</h2>
       <ul>
         <li><strong>Dados de cadastro:</strong> nome, e-mail e informações de perfil; quando aplicável, <strong>razão
           social, CNPJ e dados do representante legal</strong> ou do responsável pela conta.</li>
-        <li><strong>Dados de pedidos:</strong> histórico de pedidos, itens solicitados, endereços de entrega e status.
-        </li>
+        <li><strong>Dados de pedidos:</strong> histórico de pedidos, itens solicitados, endereços de entrega e status.</li>
         <li><strong>Dados de localização:</strong> localização em tempo real (em primeiro plano e em segundo plano)
           para rastreamento de entregas e otimização de rotas.</li>
         <li><strong>Dados do dispositivo:</strong> token de notificação push para envio de alertas sobre pedidos.</li>
         <li><strong>Imagens:</strong> fotos de produtos exibidas no cardápio (gerenciadas pelo administrador).</li>
       </ul>
+    </div>
 
+    <div class="policy-section">
       <h2>2. Uso das permissões do dispositivo</h2>
       <ul>
-        <li><strong>Localização (em primeiro plano):</strong> para identificar sua posição ao realizar ou acompanhar
-          um pedido.</li>
+        <li><strong>Localização (em primeiro plano):</strong> para identificar sua posição ao realizar ou acompanhar um pedido.</li>
         <li><strong>Localização em segundo plano:</strong> para rastreamento contínuo de entregas mesmo com o app
           minimizado, exclusivamente durante o processo de entrega ativo.</li>
         <li><strong>Câmera:</strong> para leitura de QR Codes utilizados na confirmação e gestão de pedidos.</li>
-        <li><strong>Notificações:</strong> para envio de atualizações sobre o status dos seus pedidos, confirmações e
-          alertas importantes.</li>
+        <li><strong>Notificações:</strong> para envio de atualizações sobre o status dos seus pedidos, confirmações e alertas importantes.</li>
       </ul>
+    </div>
 
+    <div class="policy-section">
       <h2>3. Armazenamento de dados</h2>
       <p>Seus dados são armazenados de forma segura em <strong>infraestrutura própria (VPS)</strong>, administrada pela
         Yatsunami. O <strong>banco de dados PostgreSQL</strong> e a API da aplicação rodam nesse ambiente, com acesso
@@ -101,80 +281,59 @@
         proteção de dados em servidor dedicado.</p>
       <p>Os dados de autenticação são protegidos com tokens seguros armazenados localmente no dispositivo via
         armazenamento criptografado.</p>
+    </div>
 
+    <div class="policy-section">
       <h2>4. Serviços de terceiros</h2>
       <p>O processamento principal dos seus dados ocorre no nosso VPS; ainda assim, algumas funções do app dependem de
         fornecedores externos:</p>
       <ul>
         <li><strong>Expo / EAS:</strong> para distribuição do aplicativo e entrega de notificações push.</li>
-        <li><strong>Google Maps / Firebase:</strong> para exibição de mapas e rastreamento de entregas em tempo real.
-        </li>
+        <li><strong>Google Maps / Firebase:</strong> para exibição de mapas e rastreamento de entregas em tempo real.</li>
       </ul>
+    </div>
 
+    <div class="policy-section">
       <h2>5. Compartilhamento de dados</h2>
       <p>Não vendemos, alugamos nem compartilhamos seus dados pessoais com terceiros para fins comerciais. Os dados são
         utilizados exclusivamente para a operação do aplicativo Yatsunami.</p>
+    </div>
 
+    <div class="policy-section">
       <h2>6. Direitos dos titulares</h2>
       <p>O titular dos dados — <strong>pessoa física ou pessoa jurídica</strong> — pode solicitar a
         <strong>exclusão permanente da conta</strong> a qualquer momento, diretamente pelo aplicativo ou entrando em
-        contato pelo e-mail:
-        <a href="mailto:yatsunamicwb@gmail.com">yatsunamicwb@gmail.com</a></p>
+        contato pelo e-mail: <a href="mailto:yatsunamicwb@gmail.com">yatsunamicwb@gmail.com</a></p>
+    </div>
 
+    <div class="policy-section">
       <h2>7. Exclusão de conta</h2>
       <p>O titular (pessoa física ou jurídica) tem o direito de excluir a conta permanentemente a qualquer momento.
-        <strong>Essa ação é irreversível:
-          todos os seus dados, pedidos e informações pessoais serão removidos definitivamente dos nossos
-          servidores.</strong></p>
+        <strong>Essa ação é irreversível: todos os seus dados, pedidos e informações pessoais serão removidos
+        definitivamente dos nossos servidores.</strong></p>
       <p><strong>Como excluir sua conta pelo aplicativo:</strong></p>
       <ol>
         <li>Abra o aplicativo e faça login.</li>
         <li>Acesse a aba <strong>Perfil</strong>.</li>
-        <li>Role até o final da página e toque em <strong>“Excluir minha conta”</strong>.</li>
+        <li>Role até o final da página e toque em <strong>"Excluir minha conta"</strong>.</li>
         <li>Confirme sua intenção na primeira tela de aviso.</li>
         <li>Digite <strong>EXCLUIR</strong> no campo de confirmação e toque no botão para concluir.</li>
       </ol>
-      <p>Caso prefira, o titular também pode solicitar a exclusão via e-mail:
+      <p style="margin-top:12px">Caso prefira, o titular também pode solicitar a exclusão via e-mail:
         <a href="mailto:yatsunamicwb@gmail.com">yatsunamicwb@gmail.com</a></p>
+    </div>
 
+    <div class="policy-section">
       <h2>8. Contato</h2>
       <p>Em caso de dúvidas sobre esta política, entre em contato:</p>
       <p><strong>E-mail:</strong> <a href="mailto:yatsunamicwb@gmail.com">yatsunamicwb@gmail.com</a></p>
+    </div>
 
-      <p class="policy-source">Esta versão incorpora a migração da base de dados para VPS próprio (abril de 2026).
-        Versão anterior do texto permanece como referência no
-        <a href="https://gist.github.com/takaaa1/13e41dc7a2be4a627730c23b7f9bd5c1" target="_blank"
-          rel="noopener noreferrer">GitHub Gist</a>.</p>
-      </div>
-    </article>
   </main>
 
-  <footer class="footer" id="contact">
-    <div class="container footer-container">
-
-      <div class="footer-brand">
-        <img src="assets/icon.png" alt="Yatsunami" class="footer-logo">
-        <span class="footer-name" data-i18n="app_name">Yatsunami</span>
-        <p class="footer-tagline" data-i18n="footer_tagline">Encomendas - Culinária Japonesa</p>
-      </div>
-
-      <nav class="footer-links" aria-label="Links do rodapé">
-        <a href="privacidade.html" aria-current="page" data-i18n="footer_privacy">Política de Privacidade</a>
-        <a href="termos.html" data-i18n="footer_terms">Termos de Uso</a>
-        <a href="https://wa.me/554133478489" target="_blank" rel="noopener noreferrer" data-i18n="footer_contact">
-          Contato via WhatsApp
-        </a>
-      </nav>
-
-      <p class="footer-copy" data-i18n="footer_copyright">© 2026 Yatsunami. Todos os direitos reservados.</p>
-
-    </div>
+  <footer>
+    <p>© 2026 Yatsunami. Todos os direitos reservados.</p>
   </footer>
 
-  <script src="js/theme.js?v=3"></script>
-  <script src="js/legal-content.js?v=3"></script>
-  <script src="js/i18n.js?v=3"></script>
-  <script src="js/main.js?v=3"></script>
 </body>
-
 </html>
